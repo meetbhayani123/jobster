@@ -5,19 +5,43 @@ const app = express();
 
 const connectDB = require('./db/connect');
 
-const notFoundMiddleware = require('./middleware/not-found');
-const errorHandlerMiddleware = require('./middleware/error-handler');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
+const xss = require('xss-clean');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet/');
+const mongoSanitizer = require('express-mongo-sanitize');
+
+//swagger
+const swaggerUI = require('swagger-ui-express');
+const YAML = require('yamljs');
+const swaggerDocument = YAML.load('./swagger.yaml');
+
+const notFoundMiddleware = require('./middleware/not-found');
+const errorHandlerMiddleware = require('./middleware/error-handler');
+
+app.set('trust-proxy', 1);
+app.use(
+    rateLimit({
+        windowMs: 15 * 60 * 1000,
+        max: 60,
+    })
+);
+
+app.use(helmet());
+app.use(xss());
+app.use(mongoSanitizer());
+app.use(cors());
 
 app.use(express.json());
 app.use(morgan('tiny'));
 app.use(cookieParser(process.env.JWT_SECRET));
 
-app.get('/api/v1', (req, res) => {
-    console.log(req.signedCookies);
-    res.send('e-commerce api');
+app.get('/', (req, res) => {
+    res.send('<h1>E-commerce API</h1><a href="/api-docs">Documentation</a>');
 });
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 app.use('/api/v1/auth', require('./router/auth'));
 app.use('/api/v1/user', require('./router/user'));

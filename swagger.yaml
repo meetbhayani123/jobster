@@ -1,0 +1,719 @@
+openapi: 3.0.0
+info:
+    title: E-commerce-api
+    contact: {}
+    version: '1.0'
+servers:
+    - url: https://localhost:3000/api/v1
+      variables: {}
+paths:
+    /:
+        get:
+            tags:
+                - auth
+            summary: New Request
+            operationId: NewRequest
+            parameters: []
+            responses:
+                '200':
+                    description: ''
+                    headers: {}
+            deprecated: false
+    /auth/logout:
+        post:
+            tags:
+                - auth
+            summary: logout
+            operationId: logout
+            parameters: []
+            responses:
+                '200':
+                    description: ''
+                    headers: {}
+            deprecated: false
+    /auth/register:
+        post:
+            tags:
+                - auth
+            summary: register
+            operationId: register
+            parameters: []
+            requestBody:
+                description: ''
+                content:
+                    application/json:
+                        schema:
+                            allOf:
+                                - $ref: '#/components/schemas/registerrequest'
+                                - example:
+                                      name: dhruv
+                                      email: dk@gmail.com
+                                      password: '123456'
+                        example:
+                            name: dhruv
+                            email: dk@gmail.com
+                            password: '123456'
+                required: true
+            responses:
+                '200':
+                    description: ''
+                    headers: {}
+            deprecated: false
+    /auth/login:
+        post:
+            tags:
+                - auth
+            summary: login
+            operationId: login
+            parameters: []
+            requestBody:
+                description: ''
+                content:
+                    application/json:
+                        schema:
+                            allOf:
+                                - $ref: '#/components/schemas/loginrequest'
+                                - example:
+                                      email: meetbhayani123@gmail.com
+                                      password: '123456'
+                        example:
+                            email: meetbhayani123@gmail.com
+                            password: '123456'
+                required: true
+            responses:
+                '200':
+                    description: ''
+                    headers: {}
+            deprecated: false
+            security: []
+    /user/:
+        get:
+            tags:
+                - user
+            summary: get all user
+            operationId: getalluser
+            parameters: []
+            responses:
+                '200':
+                    description: ''
+                    headers: {}
+            deprecated: false
+    /user/showMe:
+        get:
+            tags:
+                - user
+            summary: show Me
+            operationId: showMe
+            parameters: []
+            responses:
+                '200':
+                    description: ''
+                    headers: {}
+            deprecated: false
+    /user/{id}:
+        patch:
+            tags:
+                - user
+            summary: update user
+            operationId: updateuser
+            parameters:
+                - in: path
+                  name: id
+                  schema:
+                      type: string
+                  required: true
+                  description: Numeric ID of the user to get
+            responses:
+                '200':
+                    description: ''
+                    headers: {}
+            deprecated: false
+    /user/updateUserPassword:
+        patch:
+            tags:
+                - user
+            summary: update user password
+            operationId: updateuserpassword
+            parameters: []
+            requestBody:
+                description: ''
+                content:
+                    application/json:
+                        schema:
+                            allOf:
+                                - $ref: '#/components/schemas/updateuserpasswordrequest'
+                                - example:
+                                      oldPassword: '12345'
+                                      newPassword: '123456'
+                        example:
+                            oldPassword: '12345'
+                            newPassword: '123456'
+                required: true
+            responses:
+                '200':
+                    description: ''
+                    headers: {}
+            deprecated: false
+    /product/:
+        post:
+            tags:
+                - product
+            summary: create product
+            operationId: createproduct
+            parameters: []
+            requestBody:
+                description: ''
+                content:
+                    application/json:
+                        schema:
+                            allOf:
+                                - $ref: '#/components/schemas/createproductrequest'
+                                - example:
+                                      name: accent chair
+                                      price: 25999
+                                      image: https://dl.airtable.com/.attachmentThumbnails/e8bc3791196535af65f40e36993b9e1f/438bd160
+                                      colors:
+                                          - '#ff0000'
+                                          - '#00ff00'
+                                          - '#0000ff'
+                                      company: marcos
+                                      description: Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge
+                                      category: office
+                        example:
+                            name: accent chair
+                            price: 25999
+                            image: https://dl.airtable.com/.attachmentThumbnails/e8bc3791196535af65f40e36993b9e1f/438bd160
+                            colors:
+                                - '#ff0000'
+                                - '#00ff00'
+                                - '#0000ff'
+                            company: marcos
+                            description: Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge
+                            category: office
+                required: true
+            responses:
+                '200':
+                    description: ''
+                    headers: {}
+            deprecated: false
+        get:
+            tags:
+                - product
+            summary: get all product
+            operationId: getallproduct
+            parameters: []
+            responses:
+                '200':
+                    description: ''
+                    headers: {}
+            deprecated: false
+    /product/{id}:
+        get:
+            tags:
+                - product
+            summary: get single product
+            operationId: getsingleproduct
+            parameters:
+                - in: path
+                  name: id
+                  schema:
+                      type: string
+                  required: true
+                  description: Numeric ID of the user to get
+            responses:
+                '200':
+                    description: ''
+                    headers: {}
+            deprecated: false
+        patch:
+            tags:
+                - product
+            summary: update product
+            operationId: updateproduct
+            parameters:
+                - in: path
+                  name: id
+                  schema:
+                      type: string
+                  required: true
+                  description: Numeric ID of the user to get
+            requestBody:
+                description: ''
+                content:
+                    application/json:
+                        schema:
+                            allOf:
+                                - $ref: '#/components/schemas/updateproductrequest'
+                                - example:
+                                      price: '256300'
+                        example:
+                            price: '256300'
+                required: true
+            responses:
+                '200':
+                    description: ''
+                    headers: {}
+            deprecated: false
+        delete:
+            tags:
+                - product
+            summary: delete product
+            operationId: deleteproduct
+            parameters:
+                - in: path
+                  name: id
+                  schema:
+                      type: string
+                  required: true
+                  description: Numeric ID of the user to get
+            responses:
+                '200':
+                    description: ''
+                    headers: {}
+            deprecated: false
+    /product/uploadImage:
+        post:
+            tags:
+                - product
+            summary: upload image
+            operationId: uploadimage
+            parameters: []
+            responses:
+                '200':
+                    description: ''
+                    headers: {}
+            deprecated: false
+    /review/:
+        get:
+            tags:
+                - Review
+            summary: get all review
+            operationId: getallreview
+            parameters: []
+            responses:
+                '200':
+                    description: ''
+                    headers: {}
+            deprecated: false
+        post:
+            tags:
+                - Review
+            summary: cerate review
+            operationId: ceratereview
+            parameters: []
+            requestBody:
+                description: ''
+                content:
+                    application/json:
+                        schema:
+                            allOf:
+                                - $ref: '#/components/schemas/ceratereviewrequest'
+                                - example:
+                                      product: 6666b15244ab8ed1a518c3a4
+                                      rating: '2.5'
+                                      title: medium
+                                      comment: good but delevry is weak
+                        example:
+                            product: 6666b15244ab8ed1a518c3a4
+                            rating: '2.5'
+                            title: medium
+                            comment: good but delevry is weak
+                required: true
+            responses:
+                '200':
+                    description: ''
+                    headers: {}
+            deprecated: false
+    /review/{id}:
+        get:
+            tags:
+                - Review
+            summary: get single review
+            operationId: getsinglereview
+            parameters:
+                - in: path
+                  name: id
+                  schema:
+                      type: string
+                  required: true
+                  description: Numeric ID of the user to get
+            responses:
+                '200':
+                    description: ''
+                    headers: {}
+            deprecated: false
+        patch:
+            tags:
+                - Review
+            summary: New Request
+            operationId: PatchNewRequest
+            parameters:
+                - in: path
+                  name: id
+                  schema:
+                      type: string
+                  required: true
+                  description: Numeric ID of the user to get
+            requestBody:
+                description: ''
+                content:
+                    application/json:
+                        schema:
+                            allOf:
+                                - $ref: '#/components/schemas/NewRequestRequest'
+                                - example:
+                                      rating: '5'
+                                      comment: nice
+                                      title: abc
+                        example:
+                            rating: '5'
+                            comment: nice
+                            title: abc
+                required: true
+            responses:
+                '200':
+                    description: ''
+                    headers: {}
+            deprecated: false
+        delete:
+            tags:
+                - Review
+            summary: delete review
+            operationId: deletereview
+            parameters:
+                - in: path
+                  name: id
+                  schema:
+                      type: string
+                  required: true
+                  description: Numeric ID of the user to get
+            responses:
+                '200':
+                    description: ''
+                    headers: {}
+            deprecated: false
+    /order/:
+        get:
+            tags:
+                - order
+            summary: get all order
+            operationId: getallorder
+            parameters: []
+            responses:
+                '200':
+                    description: ''
+                    headers: {}
+            deprecated: false
+        post:
+            tags:
+                - order
+            summary: create order
+            operationId: createorder
+            parameters: []
+            requestBody:
+                description: ''
+                content:
+                    application/json:
+                        schema:
+                            allOf:
+                                - $ref: '#/components/schemas/createorderrequest'
+                                - example:
+                                      tax: 399
+                                      shippingFee: 499
+                                      items:
+                                          - name: accent chair
+                                            price: 2599
+                                            image: https://dl.airtable.com/.attachmentThumbnails/e8bc3791196535af65f40e36993b9e1f/438bd160
+                                            amount: 34
+                                            product: 6666b15244ab8ed1a518c3a4
+                        example:
+                            tax: 399
+                            shippingFee: 499
+                            items:
+                                - name: accent chair
+                                  price: 2599
+                                  image: https://dl.airtable.com/.attachmentThumbnails/e8bc3791196535af65f40e36993b9e1f/438bd160
+                                  amount: 34
+                                  product: 6666b15244ab8ed1a518c3a4
+                required: true
+            responses:
+                '200':
+                    description: ''
+                    headers: {}
+            deprecated: false
+    /order/{id}:
+        get:
+            tags:
+                - order
+            summary: get single order
+            operationId: getsingleorder
+            parameters:
+                - in: path
+                  name: id
+                  schema:
+                      type: string
+                  required: true
+                  description: Numeric ID of the user to get
+            responses:
+                '200':
+                    description: ''
+                    headers: {}
+            deprecated: false
+        patch:
+            tags:
+                - order
+            summary: update order
+            operationId: updateorder
+            parameters:
+                - in: path
+                  name: id
+                  schema:
+                      type: string
+                  required: true
+                  description: Numeric ID of the user to get
+            requestBody:
+                description: ''
+                content:
+                    application/json:
+                        schema:
+                            allOf:
+                                - $ref: '#/components/schemas/updateorderrequest'
+                                - example:
+                                      status: paid
+                        example:
+                            status: paid
+                required: true
+            responses:
+                '200':
+                    description: ''
+                    headers: {}
+            deprecated: false
+    /order/showAllMyOrder:
+        get:
+            tags:
+                - order
+            summary: get all my order
+            operationId: getallmyorder
+            parameters: []
+            responses:
+                '200':
+                    description: ''
+                    headers: {}
+            deprecated: false
+components:
+    schemas:
+        registerrequest:
+            title: registerrequest
+            required:
+                - name
+                - email
+                - password
+            type: object
+            properties:
+                name:
+                    type: string
+                email:
+                    type: string
+                password:
+                    type: string
+            example:
+                name: dhruv
+                email: dk@gmail.com
+                password: '123456'
+        loginrequest:
+            title: loginrequest
+            required:
+                - email
+                - password
+            type: object
+            properties:
+                email:
+                    type: string
+                password:
+                    type: string
+            example:
+                email: meetbhayani123@gmail.com
+                password: '123456'
+        updateuserpasswordrequest:
+            title: updateuserpasswordrequest
+            required:
+                - oldPassword
+                - newPassword
+            type: object
+            properties:
+                oldPassword:
+                    type: string
+                newPassword:
+                    type: string
+            example:
+                oldPassword: '12345'
+                newPassword: '123456'
+        createproductrequest:
+            title: createproductrequest
+            required:
+                - name
+                - price
+                - image
+                - colors
+                - company
+                - description
+                - category
+            type: object
+            properties:
+                name:
+                    type: string
+                price:
+                    type: integer
+                    format: int32
+                image:
+                    type: string
+                colors:
+                    type: array
+                    items:
+                        type: string
+                    description: ''
+                company:
+                    type: string
+                description:
+                    type: string
+                category:
+                    type: string
+            example:
+                name: accent chair
+                price: 25999
+                image: https://dl.airtable.com/.attachmentThumbnails/e8bc3791196535af65f40e36993b9e1f/438bd160
+                colors:
+                    - '#ff0000'
+                    - '#00ff00'
+                    - '#0000ff'
+                company: marcos
+                description: Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge
+                category: office
+        updateproductrequest:
+            title: updateproductrequest
+            required:
+                - price
+            type: object
+            properties:
+                price:
+                    type: string
+            example:
+                price: '256300'
+        ceratereviewrequest:
+            title: ceratereviewrequest
+            required:
+                - product
+                - rating
+                - title
+                - comment
+            type: object
+            properties:
+                product:
+                    type: string
+                rating:
+                    type: string
+                title:
+                    type: string
+                comment:
+                    type: string
+            example:
+                product: 6666b15244ab8ed1a518c3a4
+                rating: '2.5'
+                title: medium
+                comment: good but delevry is weak
+        NewRequestRequest:
+            title: NewRequestRequest
+            required:
+                - rating
+                - comment
+                - title
+            type: object
+            properties:
+                rating:
+                    type: string
+                comment:
+                    type: string
+                title:
+                    type: string
+            example:
+                rating: '5'
+                comment: nice
+                title: abc
+        createorderrequest:
+            title: createorderrequest
+            required:
+                - tax
+                - shippingFee
+                - items
+            type: object
+            properties:
+                tax:
+                    type: integer
+                    format: int32
+                shippingFee:
+                    type: integer
+                    format: int32
+                items:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Item'
+                    description: ''
+            example:
+                tax: 399
+                shippingFee: 499
+                items:
+                    - name: accent chair
+                      price: 2599
+                      image: https://dl.airtable.com/.attachmentThumbnails/e8bc3791196535af65f40e36993b9e1f/438bd160
+                      amount: 34
+                      product: 6666b15244ab8ed1a518c3a4
+        Item:
+            title: Item
+            required:
+                - name
+                - price
+                - image
+                - amount
+                - product
+            type: object
+            properties:
+                name:
+                    type: string
+                price:
+                    type: integer
+                    format: int32
+                image:
+                    type: string
+                amount:
+                    type: integer
+                    format: int32
+                product:
+                    type: string
+            example:
+                name: accent chair
+                price: 2599
+                image: https://dl.airtable.com/.attachmentThumbnails/e8bc3791196535af65f40e36993b9e1f/438bd160
+                amount: 34
+                product: 6666b15244ab8ed1a518c3a4
+        updateorderrequest:
+            title: updateorderrequest
+            required:
+                - status
+            type: object
+            properties:
+                status:
+                    type: string
+            example:
+                status: paid
+    securitySchemes:
+        httpBearer:
+            type: http
+            scheme: bearer
+security:
+    - httpBearer: []
+tags:
+    - name: auth
+    - name: user
+    - name: product
+    - name: Review
+    - name: order
