@@ -32,7 +32,7 @@ app.use(
 app.use(helmet());
 app.use(xss());
 app.use(mongoSanitizer());
-app.use(cors());
+app.use(cors({origin:"*"}));
 
 app.use(express.json());
 app.use(morgan('tiny'));
