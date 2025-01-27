@@ -4,8 +4,9 @@ require('express-async-errors');
 const app = express();
 
 const connectDB = require('./db/connect');
-console.log("hello world");
-console.log("hello world==========2");
+console.log('hello world');
+console.log('hello world==========2');
+console.log('sdfghjsxcvbnm');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
@@ -33,7 +34,7 @@ app.use(
 app.use(helmet());
 app.use(xss());
 app.use(mongoSanitizer());
-app.use(cors({origin:"*"}));
+app.use(cors({ origin: '*' }));
 
 app.use(express.json());
 app.use(morgan('tiny'));
