@@ -4,7 +4,7 @@ require('express-async-errors');
 const app = express();
 
 const connectDB = require('./db/connect');
-
+console.log("hello world");
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
