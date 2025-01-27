@@ -5,6 +5,7 @@ const app = express();
 
 const connectDB = require('./db/connect');
 console.log("hello world");
+console.log("hello world==========2");
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
